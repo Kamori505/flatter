@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/people.dart';
+import 'package:flutter_application_1/product.dart';
+import 'package:flutter_application_1/favorite.dart';
 import 'package:flutter_application_1/var.dart';
 
 
@@ -14,9 +15,8 @@ class FirstPage extends StatefulWidget {
 
 
 
-// ignore: must_be_immutable
 class Page extends State<FirstPage> {
-var MainColor= Color.fromRGBO(54, 120, 167, 1);
+var MainColor= Color.fromRGBO(191, 218, 237, 1);
   
   @override
   Widget build(BuildContext context) {
@@ -24,42 +24,42 @@ var MainColor= Color.fromRGBO(54, 120, 167, 1);
       appBar: AppBar(
         backgroundColor: MainColor,
         title: const Center(
-          child: Text('GiftShop',
+          child: Text('Магазин',
           style: TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(255, 0, 0, 0),
               fontSize: 32,
               fontWeight: FontWeight.bold
           ),
           ),
+          
         ),
       ),
-      body: Container(
-        //color: Colors.red,
+      body: Container( ////Задний фон
+        color: Colors.red,
         child: Column(
           children: <Widget> [
           Expanded(
           flex: 1,
         child: Column(
           children: <Widget>[
-            //
             
             Expanded(
               flex:1,
-              //height: MediaQuery.of(context).size.height * 0.05,
-              //color: Colors.black,
               child: Center(
-                child: Container( //finder
+                child: Container( //Задний фон поиска
+                color: const Color.fromARGB(255, 160, 84, 78),
                 child: Row(children: <Widget> [
                   Container(
                     width: MediaQuery.of(context).size.width * 0.05,
                   ),
                   Expanded(
                     flex:1,
-                   child: Container(
+                   child: Container(//Кнопка поиска
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 253, 253, 253),
                   ),
+
                   height: MediaQuery.of(context).size.height * 0.045,
                   width: MediaQuery.of(context).size.width * 0.9,
                   child: const TextField(
@@ -75,8 +75,10 @@ var MainColor= Color.fromRGBO(54, 120, 167, 1);
                   ),
                 ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.05,
+
+                  Container(//Переход в избранное
+                    color: const Color.fromARGB(255, 56, 46, 45),
+                    width: MediaQuery.of(context).size.width * 0.10,
                   ),
                 ]
                 )
@@ -85,26 +87,76 @@ var MainColor= Color.fromRGBO(54, 120, 167, 1);
             ),
 
 
-            Container(
+            Container( //Задний фон вывода
               height: MediaQuery.of(context).size.height * 0.8,
               width: MediaQuery.of(context).size.width * 0.98,
-              //color: Colors.amber,
+              color: Colors.amber,
               child:
                   Center(
-                    child:Container( 
-                      width: MediaQuery.of(context).size.width * 1,
-                      child:Container(
-                        //color: Colors.green,
-                        width: MediaQuery.of(context).size.width * 1,
-                        child: ListView.builder(
-                            itemCount: people.length,
-                            itemBuilder: (BuildContext context, index) {
-                              return Human(index: index);
-                            }
-                            )
-                            )
-                            )
+                    child:
+                    Container( 
+                          color: Color.fromARGB(255, 7, 7, 8),
+                          width: MediaQuery.of(context).size.width * 1,
+                          child:Container(
+                            color: Colors.green,
+                            width: MediaQuery.of(context).size.width * 1,
+                            child: ListView.builder(
+                                itemCount: product.length,
+                                itemBuilder: (BuildContext context, index) {
+                                  return ProductCard2(index: index);
+                                }
+                                )
+                                )
+                                ),
                   ),
+            ),
+            Container(//Нижняя панель для перехода по разделам
+              height: MediaQuery.of(context).size.height * 0.075,
+              color: Color.fromARGB(255, 255, 255, 255),
+              child: Row(
+                children: <Widget> [
+
+                  // Переход на главный экран
+                  Container(
+                   height: MediaQuery.of(context).size.height * 0.075, 
+                   width: MediaQuery.of(context).size.width * 0.5,
+                   color: Color.fromARGB(255, 255, 255, 255),
+                  child: Center(
+                    child:  TextButton( 
+                      child: const Icon(
+                        Icons.home,
+                        color: Color.fromARGB(251, 0, 0, 0),
+                       ),
+                     onPressed: () => {  Navigator.push(
+                     context,
+                     MaterialPageRoute(builder: (context) => const FirstPage()),
+                     )
+                     },           
+                    ),
+                   )
+                  ),
+
+                  // Пееход на экран избранного
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.075, 
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    child: Center(
+                      child:  TextButton( 
+                       child: const Icon(
+                          Icons.favorite,
+                          color: Color.fromARGB(251, 0, 0, 0),
+                           ),
+                       onPressed: () => {  Navigator.push(
+                       context,
+                       MaterialPageRoute(builder: (context) => const Favorite ()),
+                              )
+                              },
+                    ),      
+                   )                
+                  ),
+                ]
+              )   
             ),
           ],
         ),

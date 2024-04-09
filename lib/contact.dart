@@ -13,7 +13,7 @@ int index;
   Widget build(BuildContext context) {
     return  Scaffold(
         appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(48, 84, 120, 1),
+                backgroundColor: Color.fromARGB(255, 124, 180, 236),
                 title: const Center(
                   child: Text('DearPerson',
                   style: TextStyle(
@@ -27,7 +27,7 @@ int index;
 
 
                 body: Container(
-                        color: Colors.white,
+                        color: const Color.fromARGB(255, 116, 30, 30),
                         child: Column( children: <Widget> [
                           SizedBox(height: MediaQuery.of(context).size.height * 0.022),
 
@@ -49,7 +49,7 @@ int index;
                             child: Center(
                               child: Text(
                          
-                    "${people[index].name}",
+                    "${product[index].name}",
                     style: const TextStyle(fontSize: 32,
 
                     ),
@@ -64,7 +64,7 @@ int index;
                             //color: Colors.black,
                             child: Center(
                                child: Text(
-                                  "${people[index].phone}",
+                                  "${product[index].name}",
                                   style: const TextStyle(fontSize: 20),
                             ),
                             ),
@@ -78,7 +78,7 @@ int index;
                             // color: Colors.black,
                             child: Center(
                               child: Text(
-                    "${people[index].cost}",
+                    "${product[index].price}",
                     style: const TextStyle(fontSize: 18),
                   ),
                             ),
